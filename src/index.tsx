@@ -5,7 +5,7 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>WEB</h1>
+    <h1>WEB TEST</h1>
   </React.StrictMode>,
   document.getElementById('root')
 );
