@@ -1,8 +1,12 @@
 import { render } from '@testing-library/react'
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 
-class Homepage extends Component {
-    render() {
+export default function Homepage() {
+    const [{username,password}, setCredentials] = useState({
+        username: '',
+        password: ''
+    })
+    
         return (
             <div>
                 <section>
@@ -23,7 +27,10 @@ class Homepage extends Component {
                                                                 <input aria-label="Usuario o correo electrónico"
                                                                     aria-required="true" autoCapitalize="off" autoCorrect="off"
                                                                     type="text"
-                                                                    className="input first second focus-visible" value="" />
+                                                                    className="input first second focus-visible" value={username} onChange={(event)=>setCredentials({
+                                                                        username: event.target.value,
+                                                                        password
+                                                                    })}  />
                                                             </label>
                                                             <div className="fix"></div>
                                                         </div>
@@ -34,7 +41,10 @@ class Homepage extends Component {
                                                                 <span className="user-input">Contraseña</span>
                                                                 <input aria-label="Contraseña" aria-required="true"
                                                                     autoCapitalize="off" autoCorrect="off" name="password"
-                                                                    type="password" className="input first second focus-visible" />
+                                                                    type="password" className="input first second focus-visible" value={password} onChange={(event)=>setCredentials({
+                                                                        username,
+                                                                        password: event.target.value
+                                                                    })}/>
                                                             </label>
                                                             <div className="fix">
                                                                 <div className="primero segundo tercero cuarto sexto">
@@ -109,5 +119,4 @@ class Homepage extends Component {
             </div>
         );
     }
-}
-export default Homepage;
+
