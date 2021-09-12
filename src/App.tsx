@@ -6,13 +6,8 @@ import Login from './Pages/Login';
 function App() {
   return (
     <div>
-      <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/' exact component={Homepage}></Route>
-        <Route path='/login' component={Login}></Route>
-      </Switch>
-      </BrowserRouter>
+      <Homepage/>
+      
     </div>
   );
 }

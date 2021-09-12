@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Homepage from './Pages/Homepage';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>WEB TEST</h1>
+    <Homepage/>
   </React.StrictMode>,
   document.getElementById('root')
 );
