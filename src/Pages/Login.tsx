@@ -2,7 +2,7 @@ import { render } from '@testing-library/react'
 import React, { Component, useState } from 'react'
 import { onLogin } from '../components/Auth.api';
 
-export default function Homepage() {
+export default function Login() {
     const [{username,password}, setCredentials] = useState({
         username: '',
         password: ''
