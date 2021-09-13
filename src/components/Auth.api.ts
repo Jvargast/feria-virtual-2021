@@ -28,6 +28,32 @@ export const onLogin = async(data:Credentials)=>{
 }
 
 
+/*
+export funcion loginAction(username, password, history) {
+    return(dispatch) =>{
+        login(username,password)
+            .then((response)=>{
+                saveTokenLocalStorage(response.data);
+                runLogoutTimer(dispatch, response.data.expiresIn * 1000);
+                dispatch(loginConfirmedAction(response.data));
+                history.push('/');
+            })
+            .catch((error)=>{
+                const errorMessage = formatError(error.response.data);
+                dispatch(loginFailedAction(error.message));
+            });
+    };
+}
+
+export function loginFailedAction(data){
+    return
+}
+
+export funcion loginConfirmedAction(){
+    
+}
+*/
+
 /*export const onRegister = async(data: Credentials) =>{
     const requestConfig: AxiosRequestConfig = {
         method:'post',
