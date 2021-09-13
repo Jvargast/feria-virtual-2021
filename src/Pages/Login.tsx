@@ -1,14 +1,25 @@
 import { render } from '@testing-library/react'
 import React, { Component, useState } from 'react'
+import { onLogin } from '../components/Auth.api';
 
-export default function Login() {
+export default function Homepage() {
     const [{username,password}, setCredentials] = useState({
         username: '',
         password: ''
     })
+    const [error, setError] = useState('');
 
-    function handleSubmitClick() {
-        console.log(username, password);
+    const login = async (event: React.FormEvent) => {
+        event.preventDefault();
+        const response = await onLogin({
+            username,
+            password
+        })
+
+        if(response && response.error) {
+            setError(response.error);
+
+        }
     }
     
         return (
@@ -22,7 +33,7 @@ export default function Login() {
                                         <img src="./assets/images/recursos-didaxia/Lienzo bandera.png" alt="Didaxia Logo" className="didaxia-lienzo" />
                                         <div className="container-form">
                                             <h1 className="logo-d">DIDAXIA LOGO</h1>
-                                            <form className="form" id="loginForm" method="POST">
+                                            <form onSubmit={login} className="form" id="loginForm" method="POST">
                                                 <div className="primero segundo tercero cuarto quinto">
                                                     <div className="first-layer">
                                                         <div className="user-container">
@@ -59,14 +70,10 @@ export default function Login() {
                                                         </div>
                                                     </div>
                                                     <div className="primero segundo tercero cuarto septimo octavo noveno decimo">
-                                                        <button className="btn btn-init btn-sub" type="submit" onClick={handleSubmitClick}>
+                                                        <button className="btn btn-init btn-sub" type="submit">
                                                             <div className="primero segundo tercero cuarto">Iniciar Sesión</div>
                                                         </button>
-                                                    </div>
-                                                    <div className="primero segundo tercero cuarto septimo octavo noveno decimo">
-                                                        <button className="btn btn-init btn-sub" type="submit" onClick={handleSubmitClick}>
-                                                            <div className="primero segundo tercero cuarto">Iniciar Sesión</div>
-                                                        </button>
+                                                        {error.length > 0 && <p>{error}</p>  }
                                                     </div>
                                                     <div></div>
                                                 </div>
@@ -75,7 +82,6 @@ export default function Login() {
                                                     contraseña?</a>
 
                                             </form>
-                                                
                                         </div>
 
                                     </div>
