@@ -78,7 +78,7 @@ export default function Homepage() {
                                                     <div></div>
                                                 </div>
 
-                                                <a className="reset-pass" href="/accounts/passwor/reset">¿No recuerdas la
+                                                <a className="reset-pass" href="/password/reset">¿No recuerdas la
                                                     contraseña?</a>
 
                                             </form>
@@ -89,7 +89,7 @@ export default function Homepage() {
                                 <div className="head-form">
                                     <div className="not account not-not account-set urus">
                                         <p className="no-account">¿No tienes cuenta?
-                                            <a href="/accounts/signup" >
+                                            <a href="/register" >
                                                 <span className="not-account  account register regreg noregis">Regístrate</span>
                                             </a>
                                         </p>
