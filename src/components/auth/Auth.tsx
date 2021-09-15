@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Route, useRouteMatch, Redirect } from 'react-router-dom'
-import Homepage from '../../Pages/Login';
+import Login from '../../Pages/Login';
 import Register from '../../Pages/Register';
 
 export default function Auth() {
@@ -12,8 +12,8 @@ export default function Auth() {
     return (
         <Fragment>
 
-             <Route exact path={`${match.url}/login`}>
-                <Homepage />
+             <Route exact path={`${match.path}/login`}>
+                <Login />
             </Route>
             <Route exact path={`${match.path}/register`}>
                 <Register />
