@@ -11,7 +11,7 @@ interface CustomProps  {
 export default function ProtectedRoute({component: Component, ...restOfProps }: CustomProps) {
 
     // const isAuthenticated = localStorage.getItem("isAuthenticated");
-    const isAuthenticated = false;
+    const isAuthenticated = true;
     console.log("this", isAuthenticated);
 
     return (

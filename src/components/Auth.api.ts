@@ -14,6 +14,7 @@ interface LoginResponse{
 export const onLogin = async(data:Credentials)=>{
     const requestConfig: AxiosRequestConfig = {
         method: 'post',
+        url: 'http://localhost/auth/signUp',
         //url: process.send.apibaseurl + '/login',
         data
     }
@@ -54,26 +55,25 @@ export funcion loginConfirmedAction(){
 }
 */
 
-/*export const onRegister = async(data: Credentials) =>{
+export const onRegister = async(data: any) =>{
+
+    console.log('Data', data);
     const requestConfig: AxiosRequestConfig = {
         method:'post',
-        //url: process.env.apibaseurl + '/register',
-        data
+        url: 'http://localhost:3000/auth/signUp',
+        data: data
     }
 
     try{
-        const {data:response} = await axios.request(requestConfig);
+        const response = await axios.request(requestConfig);
+        console.log(response);
     }catch (e:any){
         console.log(e.response);
-        return {error:e.response.data.message}
+        return e;
     }
     
     
 }
 
 //store token in localstorage
-export const token_key= 'token_test';
-
-const storeToken = (token:string) =>{
-    localStorage.setItem(token_key,token);
-}*/
+// sss
