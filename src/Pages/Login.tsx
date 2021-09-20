@@ -7,7 +7,7 @@ export default function Login() {
 
 
 
-    const [{ username, password }, setCredentials] = useState({
+    const [{ username, password}, setCredentials] = useState({
         username: '',
         password: ''
     })
@@ -26,6 +26,13 @@ export default function Login() {
         } else {
             //Navegation to parkview
         }
+    }
+
+
+    const [showPost, setShow] = useState(false);
+    const toggleHandler = (e:React.FormEvent) =>{
+        e.preventDefault();
+        setShow(!showPost)
     }
 
 
@@ -53,6 +60,7 @@ export default function Login() {
     }
     
     */
+
 
     return (
         <div>
@@ -88,7 +96,7 @@ export default function Login() {
                                                             <span className="user-input">Contraseña</span>
                                                             <input aria-label="Contraseña" aria-required="true"
                                                                 autoCapitalize="off" autoCorrect="off" name="password"
-                                                                type="password" className="input first second focus-visible" value={password} onChange={(event) => setCredentials({
+                                                                type={showPost ? 'text': 'password'} className="input first second focus-visible" value={password} onChange={(event) => setCredentials({
                                                                     username,
                                                                     password: event.target.value
                                                                 })} />
@@ -96,7 +104,7 @@ export default function Login() {
                                                         <div className="fix">
                                                             <div className="primero segundo tercero cuarto sexto">
                                                                 <button className="btn btn-show btn-btn"
-                                                                    type="button">Mostrar</button>
+                                                                    type="button" onClick={toggleHandler}>{showPost ? 'Ocultar' : 'Mostrar'}</button>
                                                             </div>
                                                         </div>
                                                     </div>
