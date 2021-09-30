@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react'
 import React, { Component, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { onLogin } from '../components/Auth.api';
 
 export default function Login() {
@@ -118,8 +119,8 @@ export default function Login() {
                                                 <div></div>
                                             </div>
 
-                                            <a className="reset-pass" href="/password/reset">¿No recuerdas la
-                                                contraseña?</a>
+                                            <Link className="reset-pass"to="passwordReset">¿No recuerdas la
+                                                contraseña?</Link>
 
                                         </form>
                                     </div>
@@ -129,9 +130,9 @@ export default function Login() {
                             <div className="head-form">
                                 <div className="not account not-not account-set urus">
                                     <p className="no-account">¿No tienes cuenta?
-                                        <a href="/register" >
+                                        <Link to="/register" >
                                             <span className="not-account  account register regreg noregis">Regístrate</span>
-                                        </a>
+                                        </Link>
                                     </p>
                                 </div>
                             </div>
