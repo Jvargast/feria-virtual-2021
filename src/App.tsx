@@ -5,7 +5,7 @@ import ParkView from './components/protected/ParkView';
 import ProtectedRoute from './components/protected/ProtectedRoute';
 
 
-function App() {
+function App(): JSX.Element {
   return (
     <Fragment>
 

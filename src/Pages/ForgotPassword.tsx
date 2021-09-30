@@ -1,10 +1,26 @@
 import React, { Component, useState } from 'react'
+import { Link } from 'react-router-dom';
+
+
+type FormElement = React.FormEvent<HTMLFormElement>;
 
 
 export default function ForgotPassword() {
 
-    const [passwordReset, setPasswordReset] = useState({
-    })
+    
+
+    const [mail, setMail] = useState<string>('');
+    
+    
+
+    function backToLogin() {
+        
+    }
+
+    const handleSubmit=(e:FormElement) => {
+        e.preventDefault();
+        console.log(mail)
+    }
 
     return (
         <div>
@@ -21,13 +37,14 @@ export default function ForgotPassword() {
                                             <h2 className="logo-d septimo">¿Problemas para entrar?</h2>
                                             <p className="logo-d octavob ">Introduce tu correo electrónico y te enviaremos un enlace para que vuelvas a entrar en tu cuenta.</p>
                                         </div>
-                                        <form className="form" id="#" method="POST">
+                                        <form className="form" onSubmit={handleSubmit}>
                                             <div className="primero segundo tercero cuarto">
                                                 <div className="first-layer">
                                                     <div className="user-container">
                                                         <label className="label-user inputd">
                                                             <span className="user-input">Correo electrónico</span>
                                                             <input
+                                                                onChange={e => setMail(e.target.value)}
                                                                 aria-required="true" autoCapitalize="off" autoCorrect="off"
                                                                 type="text"
                                                                 className="input first second focus-visible" />
@@ -42,9 +59,9 @@ export default function ForgotPassword() {
                                                 </button>
                                             </div>
                                             <div className="primero segundo tercero cuarto">
-                                                <button className="btn-subb" type="submit">
+                                                <Link to="login" className="btn-subb" type="submit">
                                                     <div className="primero segundo tercero cuarto">Volver</div>
-                                                </button>
+                                                </Link>
                                             </div>
 
 
