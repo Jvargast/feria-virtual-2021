@@ -3,7 +3,7 @@ import { Redirect, Route, RouterProps } from 'react-router';
 
 interface CustomProps  {
     component: any,
-    exact: true,
+    exact?: true,
     path: string
 
 }

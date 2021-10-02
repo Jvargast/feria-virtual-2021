@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import GRADES from "../model/grades/grades";
-import SUBJECTS from "../model/subjects/subjects";
+import SUBJECTS, { SubjectValue} from "../model/subjects/subjects";
 import { onRegister } from "../components/Auth.api";
 
 interface RegisterValues  {
@@ -34,24 +34,89 @@ const initialValues: RegisterValues = {
     password: '',
     role: 'ALUMNO',
     grade: 9,
-    school: ''
+    school: '',
+    childrenNumber: 1,
+    professorSchool: '',
+    professorSubject: SubjectValue.MAT
 }
+
+
+
+
 
 export default function Register() {
 
+    
+    let initStatus = {
+        firstName: false,
+        lastName: false,
+        age: false,
+        phone: false,
+        email: false,
+        address: false,
+        condominium: false,
+        username: false,
+        password: false,
+        role: true,
+        grade: true,
+        school: false,
+        childrenNumber: true,
+        professorSchool: true,
+        // professorSchool: registerValues.role == 'PROFESOR' ? false : true,
+        professorSubject: true
+    }
+    
     const [registerValues, setRegisterValues] = useState(initialValues);
+    const [formFieldsStatus, setFormFieldsStatus] = useState(initStatus);
+    
+    // setFormFieldsStatus(initStatus);
+
+    const isFormValid = (formStatus: any) => {
+
+        let isValid = true;
+        for ( let field of Object.keys(formStatus)) {
+            if (formStatus[field] == false) {
+                return false;
+            }
+        }
+    
+        return isValid;
+    }
+    
+ 
 
     const handleInputChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+        
         const {name, value} = event.target;
         setRegisterValues({
             ...registerValues,
             [name]: value
         })
+        if (value == '') {
+            setFormFieldsStatus({
+                ...formFieldsStatus,
+                [name]: false
+            })
+        } else {
+            setFormFieldsStatus({
+                ...formFieldsStatus,
+                [name]: true
+            })
+
+        }
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
         console.log(registerValues);
-        onRegister(registerValues);
+        console.log(formFieldsStatus);
+        console.log(isFormValid(formFieldsStatus));
+        if (isFormValid(formFieldsStatus)) {
+            // onRegister(registerValues);
+
+        } else {
+            alert('Rellena todos los campos el formulario');
+        }
     }
 
 
@@ -65,7 +130,7 @@ export default function Register() {
 
             <div className="container-form">
                 <h1 className="logo-d">DIDAXIA LOGO</h1>
-                <form onSubmit={handleSubmit} className="form" id="loginForm" >
+                <form  className="form" id="loginForm" >
                     <div className="primero segundo tercero cuarto quinto">
                         <div className="first-layer">
                             <div className="user-container">
@@ -271,17 +336,19 @@ export default function Register() {
                                 }
                             })()
                         }
+
                         <div className="primero segundo tercero cuarto septimo octavo noveno decimo">
-                            <button className="btn btn-init btn-sub" type="submit">
-                                <div className="primero segundo tercero cuarto">Iniciar Sesión</div>
+                            {
+                                isFormValid(formFieldsStatus) ? <span></span> : <div className="text-danger invalid-field mb-3">Debes rellenar todos los campos</div> 
+                            }
+                            <button className="btn btn-init btn-sub" onClick={handleSubmit}>
+                                <div className="primero segundo tercero cuarto">Registrarse</div>
                             </button>
                         </div>
-                        <div></div>
                     </div>
 
                 </form>
-
-                <button onClick={handleSubmit}>SUbmit</button>
+                           
             </div>
 
         </div>

@@ -14,16 +14,12 @@ interface LoginResponse{
 export const onLogin = async(data:Credentials)=>{
     const requestConfig: AxiosRequestConfig = {
         method: 'post',
-        url: 'http://localhost/auth/signUp',
+        url: 'http://localhost:3000/auth/signIn',
         //url: process.send.apibaseurl + '/login',
         data
     }
-    try{
-        const {data: response} = await axios.request<LoginResponse>(requestConfig)
-    }catch(e:any){
-        console.error(e);
-        return {error: e.response.data.message}
-    }
+    return axios.request<LoginResponse>(requestConfig);
+    
     
     
 }

@@ -1,11 +1,13 @@
 import { render } from '@testing-library/react'
 import React, { Component, useState } from 'react'
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { onLogin } from '../components/Auth.api';
 
 export default function Login() {
 
 
-
+    const history = useHistory();
 
     const [{ username, password }, setCredentials] = useState({
         username: '',
@@ -15,17 +17,19 @@ export default function Login() {
 
     const login = async (event: React.FormEvent) => {
         event.preventDefault();
-        const response = await onLogin({
-            username,
-            password
-        })
+        try {
+            const response = await onLogin({
+                username,
+                password
+            });
+            history.push('/homepage');
 
-        if (response && response.error) {
-            setError(response.error);
 
-        } else {
-            //Navegation to parkview
+        } catch(e: any) {
+            setError(e);
         }
+
+        
     }
 
 
@@ -122,7 +126,10 @@ export default function Login() {
                                 <div className="not account not-not account-set urus">
                                     <p className="no-account">¿No tienes cuenta?
                                         <a href="/register" >
-                                            <span className="not-account  account register regreg noregis">Regístrate</span>
+                                            <Link to="/auth/register">
+
+                                                <span className="not-account  account register regreg noregis">Regístrate</span>
+                                            </Link>
                                         </a>
                                     </p>
                                 </div>
