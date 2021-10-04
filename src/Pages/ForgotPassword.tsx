@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react'
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
+import { onPassword } from '../components/Auth.api';
 
 type FormElement = React.FormEvent<HTMLFormElement>;
 
@@ -8,18 +9,20 @@ type FormElement = React.FormEvent<HTMLFormElement>;
 export default function ForgotPassword() {
 
     
+    //REVISAR ASUNTO CONTRASEÑA Y CAMBIARLO A CLASE, USO DE NODEMAILER
+    const [email, setEmail] = useState<string>('');
 
-    const [mail, setMail] = useState<string>('');
-    
-    
-
-    function backToLogin() {
-        
-    }
-
-    const handleSubmit=(e:FormElement) => {
+    const handleSubmit=async(e:FormElement) => {
         e.preventDefault();
-        console.log(mail)
+        try {
+            const response = await onPassword({
+                email
+            });
+
+        } catch(e: any) {
+            return e;
+        }
+        
     }
 
     return (
@@ -44,7 +47,7 @@ export default function ForgotPassword() {
                                                         <label className="label-user inputd">
                                                             <span className="user-input">Correo electrónico</span>
                                                             <input
-                                                                onChange={e => setMail(e.target.value)}
+                                                                onChange={e => setEmail(e.target.value)}
                                                                 aria-required="true" autoCapitalize="off" autoCorrect="off"
                                                                 type="text"
                                                                 className="input first second focus-visible" />
@@ -54,7 +57,7 @@ export default function ForgotPassword() {
                                                 </div>
                                             </div>
                                             <div className="primero segundo tercero cuarto septimo octavoa decimo">
-                                                <button className="btn-suba" type="submit">
+                                                <button className="btn-suba" type="submit" >
                                                     <div className="primero segundo tercero cuarto">Enviar enlace</div>
                                                 </button>
                                             </div>

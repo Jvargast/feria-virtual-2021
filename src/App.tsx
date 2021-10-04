@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import {BrowserRouter, Switch, Route}  from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Auth from './components/auth/Auth';
 import NotFound from './components/NotFound/NotFound';
 import ParkView from './components/protected/ParkView';
@@ -12,14 +12,14 @@ function App(): JSX.Element {
       <Switch>
 
         <Route path="/auth">
-          <Auth/>
+          <Auth />
         </Route>
-        <ProtectedRoute exact path="/homepage" component={ParkView}/>
-        <Route path="/" component={NotFound}/>
+        <ProtectedRoute exact path="/homepage" component={ParkView} />
+        {/* <Route path="/" component={NotFound} /> */}
       </Switch>
-      
+
     </Fragment>
-   
+
   );
 }
 

@@ -20,7 +20,7 @@ export default function Auth() {
             <Route exact path={`${match.path}/register`}>
                 <Register />
             </Route>
-            <Route exact path={`${match.path}/passwordReset`}>
+            <Route exact path={`${match.path}/forgot-password`}>
                 <ForgotPassword/>
             </Route>
             <Route path={`${match.path}`}>
