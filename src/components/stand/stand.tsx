@@ -1,6 +1,6 @@
 import { url } from 'inspector';
 import React from 'react'
-import { useParams } from 'react-router'
+import { Redirect, useParams } from 'react-router'
 import standVideos from "../utils/stands-videos.jsx";
 
 interface StandParams {
@@ -10,6 +10,14 @@ interface StandParams {
 export default function Stand() {
 
     let { standId }  = useParams<StandParams>();
+
+    if (isNaN(parseInt(standId)) || ( parseInt(standId) < 0 && parseInt(standId) > standVideos.length)) {
+        
+        console.log('Parse ',parseInt(standId));
+        return (
+            <Redirect to={'/homepage'}></Redirect>
+        );
+    }
 
     let numberOfChallenges = 3;
     
