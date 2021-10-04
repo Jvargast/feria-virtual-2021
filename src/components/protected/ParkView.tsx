@@ -9,7 +9,8 @@ export default function ParkView() {
 
     const {url, path} = useRouteMatch();
 
-    console.log(path);
+    console.log('url',url);
+    console.log('path',path);
 
     const mouseLeave = (e: any) => {
         let standName = e.target.id;

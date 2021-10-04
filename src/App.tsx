@@ -14,7 +14,7 @@ function App(): JSX.Element {
         <Route path="/auth">
           <Auth/>
         </Route>
-        <ProtectedRoute exact path="/homepage" component={ParkView}/>
+        <ProtectedRoute  path="/homepage" component={ParkView}/>
         <Route path="/" component={NotFound}/>
       </Switch>
       
