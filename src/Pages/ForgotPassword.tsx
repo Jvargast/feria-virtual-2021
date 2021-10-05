@@ -1,18 +1,41 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState, ChangeEvent } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { onPassword } from '../components/Auth.api';
 
 type FormElement = React.FormEvent<HTMLFormElement>;
 
+interface EmailValues {
+    email: string,
+}
+const initialValues:EmailValues = {
+    email: '',
+}
 
 export default function ForgotPassword() {
 
-    
-    //REVISAR ASUNTO CONTRASEÑA Y CAMBIARLO A CLASE, USO DE NODEMAILER
-    const [email, setEmail] = useState<string>('');
+    const [emailValues, setEmailValues] = useState(initialValues);
 
-    const handleSubmit=async(e:FormElement) => {
+
+    const handleInput = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+        const {name, value} = event.target;
+        setEmailValues({
+            ...emailValues,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = (event:any) => {
+        event.preventDefault();
+        console.log(emailValues);
+        onPassword(emailValues);
+
+    }
+
+    //REVISAR ASUNTO CONTRASEÑA Y CAMBIARLO A CLASE, USO DE NODEMAILER
+    //const [email, setEmail] = useState<string>('');
+
+    /* const handleSubmit=async(e:FormElement) => {
         e.preventDefault();
         try {
             const response = await onPassword({
@@ -23,7 +46,7 @@ export default function ForgotPassword() {
             return e;
         }
         
-    }
+    } */
 
     return (
         <div>
@@ -40,14 +63,15 @@ export default function ForgotPassword() {
                                             <h2 className="logo-d septimo">¿Problemas para entrar?</h2>
                                             <p className="logo-d octavob ">Introduce tu correo electrónico y te enviaremos un enlace para que vuelvas a entrar en tu cuenta.</p>
                                         </div>
-                                        <form className="form" onSubmit={handleSubmit}>
+                                        <form className="form">
                                             <div className="primero segundo tercero cuarto">
                                                 <div className="first-layer">
                                                     <div className="user-container">
                                                         <label className="label-user inputd">
                                                             <span className="user-input">Correo electrónico</span>
                                                             <input
-                                                                onChange={e => setEmail(e.target.value)}
+                                                                onChange={handleInput}
+                                                                value={emailValues.email}
                                                                 aria-required="true" autoCapitalize="off" autoCorrect="off"
                                                                 type="text"
                                                                 className="input first second focus-visible" />

@@ -48,12 +48,11 @@ export const onRegister = async(data: any) =>{
     
 }
 
-export const onPassword = async(data:Mail) => {
-    console.log('Forgot', data);
+export const onPassword = async(data:any) => {
     const requestConfig: AxiosRequestConfig = {
         method: 'post',
         url: 'http://localhost:4000/auth/forgot-password',
-        data
+        data:data
     }
     try{
         const response = await axios.request(requestConfig);
