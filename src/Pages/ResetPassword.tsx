@@ -31,7 +31,7 @@ export default function ResetPassword() {
                 password, 
                 newPassword
             });
-            history.push('/homepage');
+            history.push('/auth/login');
         } catch (error) {
             
         }
