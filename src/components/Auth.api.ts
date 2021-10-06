@@ -15,6 +15,12 @@ interface LoginResponse{
     username:string;
 }
 
+interface PasswordResponse {
+    token: string,
+    password: string,
+    repeatPassword: string
+}
+
 export const onLogin = async(data:Credentials)=>{
     const requestConfig: AxiosRequestConfig = {
         method: 'post',
@@ -60,6 +66,22 @@ export const onPassword = async(data:any) => {
     } catch (e:any) {
         return e;
     }
+}
+
+export const onPasswordChange = async(data:any) => {
+    
+    const requestConfig: AxiosRequestConfig = {
+        method: 'post',
+        url: 'http://localhost:4000/auth/change-password',
+        data:data
+    }
+    try{
+        const response = await axios.request(requestConfig);
+        console.log(response);
+    } catch (e:any) {
+        return e;
+    }
+    return axios.request<PasswordResponse>(requestConfig);
 }
 
 //store token in localstorage

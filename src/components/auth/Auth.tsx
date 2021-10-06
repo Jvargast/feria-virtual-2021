@@ -3,6 +3,7 @@ import { Route, useRouteMatch, Redirect, Switch } from 'react-router-dom'
 import ForgotPassword from '../../Pages/ForgotPassword';
 import Login from '../../Pages/Login';
 import Register from '../../Pages/Register';
+import ResetPassword from '../../Pages/ResetPassword';
 
 export default function Auth() {
 
@@ -22,6 +23,9 @@ export default function Auth() {
             </Route>
             <Route exact path={`${match.path}/forgot-password`}>
                 <ForgotPassword/>
+            </Route>
+            <Route exact path={`${match.path}/change-password`}>
+                <ResetPassword/>
             </Route>
             <Route path={`${match.path}`}>
                 <Redirect to="/auth/login"/>

@@ -17,14 +17,14 @@ export default function ForgotPassword() {
     const [emailValues, setEmailValues] = useState(initialValues);
 
 
-    const handleInput = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+ /*    const handleInput = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
         const {name, value} = event.target;
         setEmailValues({
             ...emailValues,
             [name]: value
         })
     }
-
+ */
     const handleSubmit = (event:any) => {
         event.preventDefault();
         console.log(emailValues);
@@ -70,7 +70,7 @@ export default function ForgotPassword() {
                                                         <label className="label-user inputd">
                                                             <span className="user-input">Correo electrónico</span>
                                                             <input
-                                                                onChange={handleInput}
+                                                                onChange={(event) => setEmailValues({email: event.target.value})}
                                                                 value={emailValues.email}
                                                                 aria-required="true" autoCapitalize="off" autoCorrect="off"
                                                                 type="text"
@@ -81,7 +81,7 @@ export default function ForgotPassword() {
                                                 </div>
                                             </div>
                                             <div className="primero segundo tercero cuarto septimo octavoa decimo">
-                                                <button className="btn-suba" type="submit" >
+                                                <button className="btn-suba" type="submit" onClick={handleSubmit}>
                                                     <div className="primero segundo tercero cuarto">Enviar enlace</div>
                                                 </button>
                                             </div>
